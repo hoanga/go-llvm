@@ -69,7 +69,7 @@ jobs:
           # Update package database with IGNORE_OSVERSION
           pkg update -f || true
           # Install llvm build dependencies
-          pkg install -y llvm19 llmv20
+          pkg install -y llvm19 llvm20
           # Install default version go dependency
           pkg install -y go
         run: |
