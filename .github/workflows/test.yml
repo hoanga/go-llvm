@@ -56,7 +56,7 @@ jobs:
         run:
           go test -v
   test-freebsd:
-    name: freebsd test
+    name: test-freebsd (19, 20)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -76,12 +76,13 @@ jobs:
           # Show environment info
           echo "FreeBSD version:"
           freebsd-version
+          # Test with llvm19
           echo "Clang 19 version info:"
           /usr/local/llvm19/bin/clang --version
+          echo "Test with llvm19 tag"
+          go test -v -tags=llvm19
+          # Test with llvm20
           echo "Clang 20 version info:"
           /usr/local/llvm20/bin/clang --version
-          # Check build the project
-          echo "Check build with llvm19 tag"
-          go build -tags=llvm19 ./...
-          echo "Check build with llvm20 tag"
-          go build -tags=llvm20 ./...
+          echo "Test with llvm20 tag"
+          go test -v -tags=llvm20
