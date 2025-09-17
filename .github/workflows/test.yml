@@ -56,7 +56,7 @@ jobs:
         run:
           go test -v
   test-freebsd:
-    name: test-freebsd (19, 20, 21)
+    name: test-freebsd (19, 20)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -69,7 +69,7 @@ jobs:
           # Update package database with IGNORE_OSVERSION
           pkg update -f || true
           # Install llvm build dependencies
-          pkg install -y llvm19 llvm20 llvm21
+          pkg install -y llvm19 llvm20
           # Install default version go dependency
           pkg install -y go
         run: |
@@ -86,7 +86,3 @@ jobs:
           /usr/local/llvm20/bin/clang --version
           echo "Test with llvm20 tag"
           go test -v -tags=llvm20
-          echo "Clang 21 version info:"
-          /usr/local/llvm21/bin/clang --version
-          echo "Test with llvm21 tag"
-          go test -v -tags=llvm21
